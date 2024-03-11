@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Virtual Memory Allocation</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    /><link href="style.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body style="background-color: rgb(165, 31, 105)">
+    <nav class="navbar fixed-top bg-body-tertiary" style="text-align: center">
+      <div class="container-fluid">
+        <h1>Memory Management</h1>
+       <align ="left"> <a href="./main.html" class="btn btn-dark">Home</a></align>
+      </div>
+    </nav>
+   
+
+
+    <div id="content" style="padding-top: 70px">
+      <p>
+        <div style="padding-left: 30px;padding-right: 30px;padding-top: 30px;padding-bottom: 30px;">
+            <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded"> 
+                    <div class="card mb-3"  >
+                <div class="card-body" >
+                  <h2>Virtual Memory Allocation using mmap()</h2><hr/>
+<h2>What is Virtual memory?</h2> <hr>
+<p>Virtual memory is a memory management technique that provides an "idealized abstraction of the storage resources that are actually available on a given machine," which "creates the illusion to users of a very large (main) memory."
+<h4>Pages</h4>
+<p>Virtual memory is divided into fixed-size blocks called pages. Similarly, physical memory (RAM) is also divided into the same-sized blocks.
+</p> 
+<hr>
+<h4>Page Frame:</h4>
+<p> The corresponding unit in physical memory is called a page frame.
+</p> 
+<hr>
+<h4>Page Table</h4>
+<p>A page table is used to keep track of the mapping between the virtual addresses in the program and the actual physical addresses in RAM.</p> 
+<hr>
+<h4>mapping</h4>
+<p>Each entry in the page table represents a mapping between a virtual page and its corresponding physical page frame.
+</p>
+<hr>
+<h4>Page falts</h4>
+<p> When a program accesses a part of virtual memory that is not currently in physical memory (page fault), the operating system intervenes.
+</p>
+<hr>
+<h4>Handling Page Faults</h4>
+<p>The operating system brings the required page into physical memory from the disk. If there's not enough space in RAM, it may need to swap out another page to the disk to make room.
+</p>
+<hr>
+<h4>Swapping</h4>
+<p>Swapping involves moving an entire process or a part of it between RAM and disk. When the operating system needs to free up space in RAM, it may swap out some pages to the disk.
+  Performance Impact: Swapping can introduce overhead, as moving data between RAM and disk is slower than accessing data in RAM directly.
+  </p>
+<hr>
+<img src = "https://www.boardinfinity.com/blog/content/images/2023/02/Virtual-Memory-1.png" height = "350px;"/>
+<hr>
+<h4>Benefits of Virtual Memory Page Allocation</h4>
+<p>Effective Use of Resources: Virtual memory allows programs to use more memory than physically available, as the system can temporarily store less frequently used data on disk.
+  Isolation: Each process has its own virtual address space, providing isolation from other processes.
+  In summary, virtual memory page allocation is a mechanism that allows a computer to efficiently manage its memory resources by using a combination of RAM and disk space. It enables the illusion of a large, contiguous block of memory for programs while efficiently utilizing physical memory through techniques like demand paging and swapping.
+  </p>
+    </div></div></div></div></p></div>
+
+    <div style="padding-left: 30px;padding-right: 30px;padding-bottom: 30px;">
+      <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded"> 
+              <div class="card mb-3"  >
+          <div class="card-body" >
+            <h5>Problem Statement :  </h5>
+            <p>Design a simple custom memory manager in C that allocates and manages virtual memory pages. The memory manager should be able to initialize the system page size, allocate virtual memory pages from the kernel, and return pages to the kernel. Implement a basic program that demonstrates the usage of this custom memory manager by allocating two virtual memory pages and printing their addresses. Ensure proper initialization and error handling for memory allocation and deallocation.
+
+            </p><br>
+    <div class="buttons" >
+      <center>
+        <a href="https://www.programiz.com/c-programming/online-compiler/" class="btn btn-dark">Code Yourself</a>
+        <a href="./VirtualMemoryQuiz.html" class="btn btn-dark">Solution</a>
+      </center>
+    </div>
+          </div></div></div></div>
+          <div style="padding-left: 30px;padding-right: 30px;padding-bottom: 30px;">
+            <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded"> 
+                    <div class="card mb-3"  >
+                <div class="card-body" >
+                  <h4>Practice :  </h4>
+                  <p>Get deeper insights of the concept by preparing for the most asked questions of this topic in exams and interviews.
+                  </p>
+                  
+                  <div class="container mt-3">
+                    <div id="accordion">
+                      <!-- <div class="card">
+                        <div class="card-header">
+                          <a class="btn" data-bs-toggle="collapse" href="#collapseOne">
+                            Collapsible Group Item #1
+                          </a>
+                        </div>
+                        <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
+                          <div class="card-body">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                          </div>
+                        </div>
+                      </div> -->
+                      <div class="card">
+                        <div class="card-header">
+                          <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseTwo">
+                          CIE/SEE Questions
+                        </a>
+                        </div>
+                        <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
+                          <div class="card-body">
+                              <ol type = "i">
+                               <li>Compare and contrast static and dynamic allocation of frames in virtual memory management.</li>
+                               <li>Explain the benefits of demand paging in terms of memory utilization and system performance</li>
+                               <li>Define thrashing in the context of virtual memory. What are its causes, and how can it be mitigated?</li>
+                               <li>Describe the copy-on-write technique and its role in efficient memory management.</li>
+                               <li>Explain the working principles of the LRU (Least Recently Used) page replacement algorithm</li>
+
+                              </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header">
+                          <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseThree">
+                            Interview Questions
+                          </a>
+                        </div>
+                        <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
+                          <div class="card-body">
+                           <ol type = "i">
+                            <li>How are frames allocated in virtual memory systems, and what factors influence this allocation?</li>
+                            <li>Discuss the advantages and disadvantages of using virtual memory in computer systems.</li>
+                            <li>How does the concept of locality of reference affect virtual memory management? Provide examples to illustrate your answer.</li>
+                            <li>Describe a scenario where demand paging would be beneficial, and explain why.</li>
+                            <li>Can you discuss any recent advancements or trends in virtual memory management techniques?</li>
+
+                           </ol>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div></div></div></div>
+          <div style="padding-bottom: 30px;"> <center>
+            <div class="card" style="width: 18rem;">
+              
+              <div class="card-body">
+                <h5 class="card-title">We value your feedback</h5>
+                <p class="card-text">
+                  
+            <div class="like-dislike">
+              <button class="like-btn" onclick="toggleLike(this)">
+                <i class="fas fa-thumbs-up"></i>
+              </button>
+              <button class="dislike-btn" onclick="toggleDislike(this)">
+                <i class="fas fa-thumbs-down"></i>
+              </button>
+            </div>
+        <br>
+            <div class="rating" data-rating="0">
+              <span class="star" data-value="1">&#9733;</span>
+              <span class="star" data-value="2">&#9733;</span>
+              <span class="star" data-value="3">&#9733;</span>
+              <span class="star" data-value="4">&#9733;</span>
+              <span class="star" data-value="5">&#9733;</span>
+            </div>
+            
+                </p>
+        
+              </div>
+            </div></center></div>
+        
+            <script>
+              function toggleLike(button) {
+                button.classList.toggle("active");
+                // Remove active class from dislike button if it's active
+                document.querySelector(".dislike-btn").classList.remove("active");
+              }
+        
+              function toggleDislike(button) {
+                button.classList.toggle("active");
+                // Remove active class from like button if it's active
+                document.querySelector(".like-btn").classList.remove("active");
+              }
+        
+              document.addEventListener("DOMContentLoaded", function() {
+          const stars = document.querySelectorAll('.star');
+        
+          stars.forEach(function(star) {
+            star.addEventListener('click', function() {
+              const value = parseInt(star.getAttribute('data-value'));
+        
+              // Update rating attribute and add active class to stars up to the clicked one
+              star.parentNode.setAttribute('data-rating', value);
+              stars.forEach(function(innerStar) {
+                if (parseInt(innerStar.getAttribute('data-value')) <= value) {
+                  innerStar.classList.add('active');
+                } else {
+                  innerStar.classList.remove('active');
+                }
+              });
+            });
+          });
+        });
+        
+            </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+      integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

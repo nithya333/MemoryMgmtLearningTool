@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body style="background-color: rgb(165, 31, 105)">
+    <nav class="navbar fixed-top bg-body-tertiary" style="text-align: center">
+      <div class="container-fluid">
+        <h1>Memory Management</h1>
+       <align ="left"> <a href="./main.html" class="btn btn-dark">Home</a></align>
+      </div>
+    </nav>
+   
+
+
+    <div id="content" style="padding-top: 70px">
+      <p>
+        <div style="padding-left: 30px;padding-right: 30px;padding-top: 30px;padding-bottom: 30px;">
+            <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded"> 
+                    <div class="card mb-3"  >
+                <div class="card-body" >
+                  <h2>Time for a quiz !!!</h2>
+                  <h5>Let's test your fundamentals before viewing the solution</h5><hr/>
+                
+
+                  <form>
+                    <h5>Question 1</h5>
+                      <input type = "radio" class = "options" name = "Q1" value = "wrong_ans"/><br>
+                      <input type = "radio" class = "options" name = "Q1" value = "wrong_ans"/><br>
+                      <input type = "radio" class = "options" name = "Q1" value = "wrong_ans"/><br>
+                      <input type = "radio" class = "options" name = "Q1" value = "right_ans"/><br>
+                    <hr>
+                    <h5>Question 2</h5>
+                      <input type = "radio" class = "options" name = "Q2" value = "wrong_ans"/><br>
+                      <input type = "radio" class = "options" name = "Q2" value = "wrong_ans"/><br>
+                      <input type = "radio" class = "options" name = "Q2" value = "wrong_ans"/><br>
+                      <input type = "radio" class = "options" name = "Q2" value = "right_ans"/><br>
+                    <hr>
+                    <h5>Question 3</h5>
+                      <input type = "radio" class = "options" name = "Q3" value = "wrong_ans"/><br>
+                      <input type = "radio" class = "options" name = "Q3" value = "wrong_ans"/><br>
+                      <input type = "radio" class = "options" name = "Q3" value = "wrong_ans"/><br>
+                      <input type = "radio" class = "options" name = "Q3" value = "right_ans"/><br>
+                    <hr>
+                    <h5>Question 4</h5>
+                      <input type = "radio" class = "options" name = "Q4" value = "wrong_ans"/><br>
+                      <input type = "radio" class = "options" name = "Q4" value = "wrong_ans"/><br>
+                      <input type = "radio" class = "options" name = "Q4" value = "wrong_ans"/><br>
+                      <input type = "radio" class = "options" name = "Q4" value = "right_ans"/><br>
+                    <hr>
+                    <h5>Question 5</h5>
+                      <input type = "radio" class = "options" name = "Q5" value = "wrong_ans"/><br>
+                      <input type = "radio" class = "options" name = "Q5" value = "wrong_ans"/><br>
+                      <input type = "radio" class = "options" name = "Q5" value = "wrong_ans"/><br>
+                      <input type = "radio" class = "options" name = "Q5" value = "right_ans"/><br>
+                    <hr>
+                    <!-- <input type = "button" onclick="check()" value = "Submit"/> -->
+                    <input type = "button" onclick="hrefFunction()" value = "Submit"/>
+                    <!-- <input type = "button" onclick="replaceFunction()" value = "Submit"/> -->
+                    <!-- <div>Submit</div> -->
+                  </form>
+    </div></div></div></div></p></div>
+
+    
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+      integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+      crossorigin="anonymous"
+    ></script>
+    <script type = "text/javascript">
+      function check()
+      {
+        var radioButtons = document.querySelectorAll('input[type="radio"]');
+        for (var i = 0; i < radioButtons.length; i++) {
+          if (radioButtons[i].checked) {
+            console.log(radioButtons[i].value);
+          }
+        }
+      }
+
+      //Function demonstrating the Href Method
+      function hrefFunction()
+      {
+        var marks = 0
+        // var radioButtons = document.querySelectorAll('input[type="radio"]');
+        var radioButtons = document.getElementsByClassName('options');
+        console.log(radioButtons)
+        console.log(radioButtons.length)
+        for (var i = 0; i < radioButtons.length; i++) {
+          if (radioButtons[i].checked) 
+          {
+            console.log(radioButtons[i].value);
+            if (radioButtons[i].value.localeCompare('right_ans') == 0)
+            {
+              marks += 1;
+            }
+          }
+        }
+        console.log(marks);
+        if (marks >= 3)
+        {
+          window.location.href = "https://www.example.com";
+        }
+        else
+        {
+          window.location.href = "https://www.scaler.com/topics/how-to-redirect-from-one-page-to-another-in-html-on-button-click/";
+        }
+      }
+          
+      //Function demonstrating the Replace Method    
+      function replaceFunction()
+      {
+          window.location.replace("https://www.example.com");
+      }
+    </script>
+  </body>
+</html>

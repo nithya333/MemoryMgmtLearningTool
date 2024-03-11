@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demand Paging</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link href="style.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body style="background-color: rgb(165, 31, 105)">
+    <nav class="navbar fixed-top bg-body-tertiary" style="text-align: center">
+      <div class="container-fluid">
+        <h1>Memory Management</h1>
+       <align ="left"> <a href="./main.html" class="btn btn-dark">Home</a></align>
+      </div>
+    </nav>
+   
+
+
+    <div id="content" style="padding-top: 70px">
+      <p>
+        <div style="padding-left: 30px;padding-right: 30px;padding-top: 30px;padding-bottom: 30px;">
+            <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded"> 
+                    <div class="card mb-3"  >
+                <div class="card-body" >
+                  <h2>Demand Paging in Operating Systems</h2><hr/>
+<h2>What is Demand Paging?</h2> <hr>
+<p>Demand paging can be described as a memory management technique that is used in operating systems to improve memory usage and system performance. Demand paging is a technique used in virtual memory systems where pages enter main memory only when requested or needed by the CPU.</p>
+
+<p>In demand paging, the operating system loads only the necessary pages of a program into memory at runtime, instead of loading the entire program into memory at the start. A page fault occurred when the program needed to access a page that is not currently in memory. The operating system then loads the required pages from the disk into memory and updates the page tables accordingly. This process is transparent to the running program and it continues to run as if the page had always been in memory.</p>
+
+<h2>What is Page Fault?</h2> <hr>The term “page miss” or “page fault” refers to a situation where a referenced page is not found in the main memory.</p>
+
+<p>The missed page must be accessed by the CPU from the secondary memory. The system’s effective access time will increase significantly if there are a lot of page faults.</p>
+
+<h2>What is Thrashing?</h2> <hr>The effective access time will be the amount of time it takes the CPU to read a single word from the secondary memory, and it will be very high if the number of page faults is equal to the number of referred pages or if the number of page faults is high enough to keep the CPU busy reading pages from the secondary memory. This is called Thrashing.</p>
+
+<h2>Pure Demand Paging</h2> <hr>Pure demand paging is a specific implementation of demand paging. The operating system only loads pages into memory when the program needs them. In on-demand paging only, no pages are initially loaded into memory when the program starts, and all pages are initially marked as being on disk.</p>
+
+<h2>Working Process of Demand Paging</h2> <hr>So, let us understand this with the help of an example. Suppose we want to run a process P which have four pages P0, P1, P2, and P3. Currently, in the page table, we have pages P1 and P3.</p>
+
+<h3>Demand Paging</h3>
+<center><img src = "DP.png" height = "350px;"/></center>
+<p>Therefore, the operating system‘s demand paging mechanism follows a few steps in its operation.</p>
+
+<ol>
+<li>Program Execution: Upon launching a program, the operating system allocates a certain amount of memory to the program and establishes a process for it.</li>
+<li>Creating page tables: To keep track of which program pages are currently in memory and which are on disk, the operating system makes page tables for each process.</li>
+<li>Handling Page Fault: When a program tries to access a page that isn’t in memory at the moment, a page fault happens. In order to determine whether the necessary page is on disk, the operating system pauses the application and consults the page tables.</li>
+<li>Page Fetch: The operating system loads the necessary page into memory by retrieving it from the disk if it is there. The page’s new location in memory is then reflected in the page table.</li>
+<li>Resuming the program: The operating system picks up where it left off when the necessary pages are loaded into memory.</li>
+<li>Page replacement: If there is not enough free memory to hold all the pages a program needs, the operating system may need to replace one or more pages currently in memory with pages currently in memory. on the disk. The page replacement algorithm used by the operating system determines which pages are selected for replacement.</li>
+<li>Page cleanup: When a process terminates, the operating system frees the memory allocated to the process and cleans up the corresponding entries in the page tables.</li>
+</ol>
+
+<h2>Advantages of Demand Paging</h2> <hr>So in the Demand Paging technique, there are some benefits that provide efficiency of the operating system.</p>
+
+<ul>
+<li>Efficient use of physical memory: Query paging allows for more efficient use because only the necessary pages are loaded into memory at any given time.</li>
+<li>Support for larger programs: Programs can be larger than the physical memory available on the system because only the necessary pages will be loaded into memory.</li>
+<li>Faster program start: Because only part of a program is initially loaded into memory, programs can start faster than if the entire program were loaded at once.</li>
+<li>Reduce memory usage: Query paging can help reduce the amount of memory a program needs, which can improve system performance by reducing the amount of disk I/O required.</li>
+</ul>
+
+<h2>Disadvantages of Demand Paging</h2> <hr>Page Fault Overload: The process of swapping pages between memory and disk can cause a performance overhead, especially if the program frequently accesses pages that are not currently in memory.</p>
+
+<p>Degraded performance: If a program frequently accesses pages that are not currently in memory, the system spends a lot of time swapping out pages, which degrades performance.</p>
+
+<p>Fragmentation: Query paging can cause physical memory fragmentation, degrading system performance over time.</p>
+
+<p>Complexity: Implementing query paging in an operating system can be complex, requiring complex algorithms and data structures to manage page tables and swap space.</p>
+     
+    </div></div></div></div></p></div>
+    <div style="padding-left: 30px;padding-right: 30px;padding-bottom: 30px;">
+      <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded"> 
+              <div class="card mb-3"  >
+          <div class="card-body" >
+            <h4>Practice :  </h4>
+            <p>Get deeper insights of the concept by preparing for the most asked questions of this topic in exams and interviews.
+            </p>
+            
+            <div class="container mt-3">
+              <div id="accordion">
+                <!-- <div class="card">
+                  <div class="card-header">
+                    <a class="btn" data-bs-toggle="collapse" href="#collapseOne">
+                      Collapsible Group Item #1
+                    </a>
+                  </div>
+                  <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
+                    <div class="card-body">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                  </div>
+                </div> -->
+                <div class="card">
+                  <div class="card-header">
+                    <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseTwo">
+                    CIE/SEE Questions
+                  </a>
+                  </div>
+                  <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
+                    <div class="card-body">
+                        <ol type = "i">
+                         <li>What is thrashing? What are the causes for thrashing? Discuss the mechanism to prevent it. </li>
+                         <li>With a neat sketch, explain the steps in handling a page fault. </li>
+                         <li>Briefly explain the strategies and schemes for allocation of frames. </li>
+                         <li>What is virtual memory? List the advantages of using virtual memory. Discuss the demand paging approach used to implement virtual memory with help of a neat diagram.</li>
+                         <li>With respect to implementation of virtual memory bring out the relationship between all of the following with a neat diagram and explanation: Valid-invalid bit, Dirty bit, Swap Space, Page table, , trap </li>
+
+                        </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header">
+                    <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseThree">
+                      Interview Questions
+                    </a>
+                  </div>
+                  <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
+                    <div class="card-body">
+                     <ol type = "i">
+                      <li>What is demand paging, and how does it differ from pre-paging in virtual memory systems?</li>
+                      <li>Explain the concept of a page fault and its role in demand paging.</li>
+                      <li>How does demand paging contribute to better system performance compared to pure demand allocation?</li>
+                      <li>Discuss the working principles of the demand paging system with respect to page replacement policies.</li>
+                      <li>What are the advantages and disadvantages of demand paging in virtual memory?</li>
+                      <li>How does virtual-to-physical address translation occur in virtual memory</li>
+
+                     </ol>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div></div></div></div>
+    <div style="padding-left: 30px;padding-right: 30px;padding-bottom: 30px;">
+      <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded"> 
+              <div class="card mb-3"  >
+          <div class="card-body" >
+            
+            <h5>Problem Statement :  </h5>
+            <p>Your task is to develop a program that demonstrates the working of demand paging. The program must perform 2 functions :<br><br>1. Simulate the page table by checking if a perticular page is loaded in the main memory, and accordingly declare whether there is an occourance of page fault. If the page fault has occoured, the page must be loaded from the backing store. <br>2. Display the page table with the information regarding page number, its frame number and the program modification status(dirty bit).</p>
+            <p>The page number which is to be loaded into the memory must be taken as user input.</p><br>
+    <div class="buttons" >
+      <center>
+        <a href="https://www.programiz.com/c-programming/online-compiler/" class="btn btn-dark">Code Yourself</a>
+        <a href="./DPQuiz.html" class="btn btn-dark">Solution</a>
+      </center>
+    </div>
+          </div></div></div></div>
+          <div style="padding-bottom: 30px;">
+          <center>
+            <div class="card" style="width: 18rem;">
+              
+              <div class="card-body">
+                <h5 class="card-title">We value your feedback</h5>
+                <p class="card-text">
+                  
+            <div class="like-dislike">
+              <button class="like-btn" onclick="toggleLike(this)">
+                <i class="fas fa-thumbs-up"></i>
+              </button>
+              <button class="dislike-btn" onclick="toggleDislike(this)">
+                <i class="fas fa-thumbs-down"></i>
+              </button>
+            </div>
+        <br>
+            <div class="rating" data-rating="0">
+              <span class="star" data-value="1">&#9733;</span>
+              <span class="star" data-value="2">&#9733;</span>
+              <span class="star" data-value="3">&#9733;</span>
+              <span class="star" data-value="4">&#9733;</span>
+              <span class="star" data-value="5">&#9733;</span>
+            </div>
+            
+                </p>
+        
+              </div>
+            </div></center></div>
+        
+            <script>
+              function toggleLike(button) {
+                button.classList.toggle("active");
+                // Remove active class from dislike button if it's active
+                document.querySelector(".dislike-btn").classList.remove("active");
+              }
+        
+              function toggleDislike(button) {
+                button.classList.toggle("active");
+                // Remove active class from like button if it's active
+                document.querySelector(".like-btn").classList.remove("active");
+              }
+        
+              document.addEventListener("DOMContentLoaded", function() {
+          const stars = document.querySelectorAll('.star');
+        
+          stars.forEach(function(star) {
+            star.addEventListener('click', function() {
+              const value = parseInt(star.getAttribute('data-value'));
+        
+              // Update rating attribute and add active class to stars up to the clicked one
+              star.parentNode.setAttribute('data-rating', value);
+              stars.forEach(function(innerStar) {
+                if (parseInt(innerStar.getAttribute('data-value')) <= value) {
+                  innerStar.classList.add('active');
+                } else {
+                  innerStar.classList.remove('active');
+                }
+              });
+            });
+          });
+        });
+        
+            </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+      integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

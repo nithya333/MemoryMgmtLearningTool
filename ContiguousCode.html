@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contiguous Memory Allocation</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  />
+  <link href="style.css" rel="stylesheet" />
+  </head>
+  <body style="background-color: rgb(165, 31, 105)">
+
+    <nav class="navbar fixed-top bg-body-tertiary" style="text-align: center">
+        <div class="container-fluid">
+          <h1><center>Contiguous Memory Allocation</center></h1>
+          <align ="left"> <a href="./main.html" class="btn btn-dark">Home</a></align>
+        </div>
+      </nav>
+    <div style="padding-left: 30px;padding-right: 30px;padding-top: 100px; padding-bottom: 30px;">
+    <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded"> 
+            <div class="card mb-3"  >
+        <div class="card-body" >
+          <h4 >Hurray!!! You passed the quiz. Let's see the solution </h4>
+          <img src = "./popper.gif" height = "200px"><hr/>
+          <h5 class="card-title" id = "firstfit">Problem Statement : First Fit Algorithm</h5><hr/>
+         <p> You are tasked with developing a memory allocation program using the First Fit algorithm. Given a set of memory blocks and processes with varying sizes, implement a solution that allocates memory blocks to processes in the order they arrive. Your program should output the process number, its size, and the block number it is allocated to, or indicate if it cannot be allocated.
+        </p>
+
+
+            <h5>Solution :</h5><hr>
+          <p class="card-text"><pre>
+            <code class="language-css">
+                #include< stdio.h >
+
+                // Function to allocate memory to blocks as per First fit algorithm 
+                
+                void firstFit(int blockSize[], int m, int processSize[], int n) 
+                { 
+                    int i, j; 
+                    // Stores block id of the block allocated to a process 
+                    int allocation[n]; 
+                
+                    // Initially no block is assigned to any process 
+                    for(i = 0; i < n; i++) 
+                    { 
+                        allocation[i] = -1; 
+                    } 
+                
+                    // pick each process and find suitable blocks according to its size and assign to it 
+                    for (i = 0; i < n; i++) //here, n -> number of processes 
+                    { 
+                        for (j = 0; j < m; j++) //here, m -> number of blocks 
+                        { 
+                            if (blockSize[j] >= processSize[i]) 
+                            { 
+                                // allocating block j to the ith process
+                               allocation[i] = j; 
+                
+                                // Reduce available memory in this block. 
+                                blockSize[j] -= processSize[i]; 
+                
+                                break; //go to the next process in the queue 
+                            } 
+                        } 
+                    } 
+                
+                    printf("\nProcess No.\tProcess Size\tBlock no.\n"); 
+                    for (int i = 0; i < n; i++) 
+                    { 
+                        printf(" %i\t\t\t", i+1); 
+                        printf("%i\t\t\t\t", processSize[i]); 
+                        if (allocation[i] != -1) 
+                            printf("%i", allocation[i] + 1); 
+                        else
+                            printf("Not Allocated"); 
+                        printf("\n"); 
+                    } 
+                } 
+                
+                // Driver code 
+                int main() 
+                { 
+                    int m; //number of blocks in the memory 
+                    int n; //number of processes in the input queue 
+                
+                    printf("Enter the number of blocks: ");
+                    scanf("%d", &m);
+                
+                    int blockSize[m]; // Array containing sizes of available blocks
+                    printf("Enter the sizes of the blocks:\n"); 
+                    for (int i = 0; i < m; i++)
+                    {
+                        printf("Block %d: ", i + 1);
+                        scanf("%d", &blockSize[i]);
+                    }
+                
+                    printf("Enter the number of processes: ");
+                    scanf("%d", &n);
+                
+                    int processSize[n];  // Array containing sizes of processes
+                    printf("Enter the sizes of the processes:\n");
+                    for (int i = 0; i < n; i++)
+                    {
+                        printf("Process %d: ", i + 1);
+                        scanf("%d", &processSize[i]);
+                    }
+                
+                    firstFit(blockSize, m, processSize, n); 
+                
+                    return 0 ; 
+                }   
+            </code>
+        </pre></p>
+        <h5>Sample Output :</h5><hr/>
+        <pre>
+            <code>
+              Enter the number of blocks: 5
+              Enter the sizes of the blocks:
+              Block 1: 40
+              Block 2: 50
+              Block 3: 60
+              Block 4: 70
+              Block 5: 10
+              Enter the number of processes: 4
+              Enter the sizes of the processes:
+              Process 1: 10
+              Process 2: 15
+              Process 3: 35
+              Process 4: 80
+              
+              Process No.	Process Size	Block no.
+               1			10				1
+               2			15				1
+               3			35				2
+               4			80				Not Allocated     
+            </code>
+        </pre>
+        </div>
+      </div></div>
+    </div>
+
+    <div style="padding-left: 30px;padding-right: 30px;padding-bottom: 30px;">
+      <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded"> 
+              <div class="card mb-3"  >
+          <div class="card-body" >
+            <h5 class="card-title"  id = "bestfit">Problem Statement : Best Fit Algorithm</h5><hr/>
+           <p> Create a memory allocation program employing the Best Fit algorithm. With a collection of available memory blocks and processes waiting to be allocated, design a solution that assigns each process to the smallest available block that can accommodate it. The output should display the process number, its size, and the block number it is allocated to, or indicate if it cannot be allocated.
+          </p>
+  
+  
+              <h5>Solution :</h5><hr>
+            <p class="card-text"><pre>
+              <code class="language-css">
+                #include< stdio.h >
+
+                  // Method to allocate memory to blocks as per Best fit algorithm
+                  
+                  void bestFit(int blockSize[], int m, int processSize[], int n)
+                  {
+                      // Stores block id of the block allocated to a process
+                      int allocation[n];
+                  
+                      // Initially no block is assigned to any process
+                      for (int i = 0; i < n; i++)
+                          allocation[i] = -1;
+                  
+                      // pick each process and find suitable blocks according to its size and assign to it
+                      for (int i = 0; i < n; i++)
+                      {
+                          // Find the best fit block for the current process
+                          int bestIdx = -1;
+                          for (int j = 0; j < m; j++)
+                          {
+                              if (blockSize[j] >= processSize[i])
+                              {
+                                  if (bestIdx == -1)
+                                      bestIdx = j;
+                                  else if (blockSize[bestIdx] > blockSize[j])
+                                      bestIdx = j;
+                              }
+                          }
+                  
+                          // If we could find a block for the current process
+                          if (bestIdx != -1)
+                          {
+                              // allocate block j to p[i] process
+                              allocation[i] = bestIdx;
+                  
+                              // Reduce available memory in this block.
+                              blockSize[bestIdx] -= processSize[i];
+                          }
+                      }
+                  
+                      printf("\nProcess No.\tProcess Size\tBlock no.\n");
+                      for (int i = 0; i < n; i++)
+                      {
+                          printf(" %d\t\t%d\t\t", i + 1, processSize[i]);
+                          if (allocation[i] != -1)
+                              printf("%d", allocation[i] + 1);
+                          else
+                              printf("Not Allocated");
+                          printf("\n");
+                      }
+                  }
+                  
+                  // Driver Method
+                  int main()
+                  {
+                      int m, n;
+                  
+                      printf("Enter the number of blocks: ");
+                      scanf("%d", &m);
+                  
+                      int blockSize[m];  // Array containing sizes of available blocks
+                      printf("Enter the sizes of the blocks:\n");
+                      for (int i = 0; i < m; i++)
+                      {
+                          printf("Block %d: ", i + 1);
+                          scanf("%d", &blockSize[i]);
+                      }
+                  
+                      printf("Enter the number of processes: ");
+                      scanf("%d", &n);
+                  
+                      int processSize[n];  // Array containing sizes of processes
+                      printf("Enter the sizes of the processes:\n");
+                      for (int i = 0; i < n; i++)
+                      {
+                          printf("Process %d: ", i + 1);
+                          scanf("%d", &processSize[i]);
+                      }
+                  
+                      bestFit(blockSize, m, processSize, n);
+                  
+                      return 0;
+                  }    
+              </code>
+          </pre></p>
+          <h5>Sample Output :</h5><hr/>
+          <pre>
+              <code>
+                Enter the number of blocks: 5
+                Enter the sizes of the blocks:
+                Block 1: 40
+                Block 2: 50
+                Block 3: 60
+                Block 4: 70
+                Block 5: 10
+                Enter the number of processes: 4
+                Enter the sizes of the processes:
+                Process 1: 10
+                Process 2: 15
+                Process 3: 35
+                Process 4: 80
+
+                Process No.	Process Size	Block no.
+                1		10		5
+                2		15		1
+                3		35		2
+                4		80		Not Allocated
+              </code>
+          </pre>
+          </div>
+        </div></div>
+      </div>
+
+      <div style="padding-left: 30px;padding-right: 30px;padding-bottom: 30px;">
+        <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded"> 
+                <div class="card mb-3"  >
+            <div class="card-body" >
+              <h5 class="card-title"  id = "worstfit">Problem Statement : Worst Fit Algorithm</h5><hr/>
+             <p> Develop a program for memory allocation using the Worst Fit algorithm. Given a set of memory blocks and a queue of processes with different sizes, implement a solution that assigns each process to the largest available block. The output should include the process number, its size, and the block number it is allocated to, or indicate if it cannot be allocated.
+            </p>
+    
+    
+                <h5>Solution :</h5><hr>
+              <p class="card-text"><pre>
+                <code class="language-css">
+                    #include< stdio.h >
+
+                    // Function to allocate memory to blocks as per worst fit algorithm
+                    void worstFit(int blockSize[], int m, int processSize[], int n)
+                    {
+                        // Stores block id of the block allocated to a process
+                        int allocation[n];
+                    
+                        // Initially no block is assigned to any process
+                        for (int i = 0; i < n; i++)
+                        {
+                            allocation[i] = -1;
+                        }
+                    
+                        // pick each process and find suitable blocks according to its size and assign to it
+                        for (int i = 0; i < n; i++)
+                        {
+                            // Find the worst fit block for the current process
+                            int wstIdx = -1;
+                            for (int j = 0; j < m; j++)
+                            {
+                                if (blockSize[j] >= processSize[i])
+                                {
+                                    if (wstIdx == -1)
+                                        wstIdx = j;
+                                    else if (blockSize[wstIdx] < blockSize[j])
+                                        wstIdx = j;
+                                }
+                            }
+                    
+                            // If we could find a block for the current process
+                            if (wstIdx != -1)
+                            {
+                                // allocate block j to p[i] process
+                                allocation[i] = wstIdx;
+                    
+                                // Reduce available memory in this block.
+                                blockSize[wstIdx] -= processSize[i];
+                            }
+                        }
+                    
+                        printf("\nProcess No.\tProcess Size\tBlock no.\n");
+                        for (int i = 0; i < n; i++)
+                        {
+                            printf(" %d\t\t\t", i + 1);
+                            printf("%d\t\t\t\t", processSize[i]);
+                            if (allocation[i] != -1)
+                                printf("%d", allocation[i] + 1);
+                            else
+                                printf("Not Allocated");
+                            printf("\n");
+                        }
+                    }
+                    
+                    // Driver code
+                    int main()
+                    {
+                        int m; // number of blocks in the memory
+                        int n; // number of processes in the input queue
+                    
+                        printf("Enter the number of blocks: ");
+                        scanf("%d", &m);
+                    
+                        int blockSize[m];  // Array containing sizes of available blocks
+                        printf("Enter the sizes of the blocks:\n");
+                        for (int i = 0; i < m; i++)
+                        {
+                            printf("Block %d: ", i + 1);
+                            scanf("%d", &blockSize[i]);
+                        }
+                    
+                        printf("Enter the number of processes: ");
+                        scanf("%d", &n);
+                    
+                        int processSize[n];  // Array containing sizes of processes
+                        printf("Enter the sizes of the processes:\n");
+                        for (int i = 0; i < n; i++)
+                        {
+                            printf("Process %d: ", i + 1);
+                            scanf("%d", &processSize[i]);
+                        }
+                    
+                        worstFit(blockSize, m, processSize, n);
+                    
+                        return 0;
+                    }                    
+                </code>
+            </pre></p>
+            <h5>Sample Output :</h5><hr/>
+            <pre>
+                <code>
+                  Enter the number of blocks: 5
+                  Enter the sizes of the blocks:
+                  Block 1: 40
+                  Block 2: 50
+                  Block 3: 60
+                  Block 4: 70
+                  Block 5: 10
+                  Enter the number of processes: 4
+                  Enter the sizes of the processes:
+                  Process 1: 10
+                  Process 2: 15
+                  Process 3: 35
+                  Process 4: 80
+
+                  Process No.	Process Size	Block no.
+                  1			10				4
+                  2			15				3
+                  3			35				4
+                  4			80				Not Allocated
+                </code>
+            </pre>
+            </div>
+          </div></div>
+        </div>
+        <div style="padding-bottom: 30px;">
+        <center>
+            <div class="card" style="width: 18rem;">
+              
+              <div class="card-body">
+                <h5 class="card-title">We value your feedback</h5>
+                <p class="card-text">
+                  
+            <div class="like-dislike">
+              <button class="like-btn" onclick="toggleLike(this)">
+                <i class="fas fa-thumbs-up"></i>
+              </button>
+              <button class="dislike-btn" onclick="toggleDislike(this)">
+                <i class="fas fa-thumbs-down"></i>
+              </button>
+            </div>
+        <br>
+            <div class="rating" data-rating="0">
+              <span class="star" data-value="1">&#9733;</span>
+              <span class="star" data-value="2">&#9733;</span>
+              <span class="star" data-value="3">&#9733;</span>
+              <span class="star" data-value="4">&#9733;</span>
+              <span class="star" data-value="5">&#9733;</span>
+            </div>
+            
+                </p>
+        
+              </div>
+            </div></center></div>
+        
+            <script>
+              function toggleLike(button) {
+                button.classList.toggle("active");
+                // Remove active class from dislike button if it's active
+                document.querySelector(".dislike-btn").classList.remove("active");
+              }
+        
+              function toggleDislike(button) {
+                button.classList.toggle("active");
+                // Remove active class from like button if it's active
+                document.querySelector(".like-btn").classList.remove("active");
+              }
+        
+              document.addEventListener("DOMContentLoaded", function() {
+          const stars = document.querySelectorAll('.star');
+        
+          stars.forEach(function(star) {
+            star.addEventListener('click', function() {
+              const value = parseInt(star.getAttribute('data-value'));
+        
+              // Update rating attribute and add active class to stars up to the clicked one
+              star.parentNode.setAttribute('data-rating', value);
+              stars.forEach(function(innerStar) {
+                if (parseInt(innerStar.getAttribute('data-value')) <= value) {
+                  innerStar.classList.add('active');
+                } else {
+                  innerStar.classList.remove('active');
+                }
+              });
+            });
+          });
+        });
+        
+            </script>
+    <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+    crossorigin="anonymous"
+  ></script>
+  </body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contiguous memory allocation</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body style="background-color: rgb(165, 31, 105)">
+    <nav class="navbar fixed-top bg-body-tertiary" style="text-align: center">
+      <div class="container-fluid">
+        <h1>Memory Management</h1>
+       <align ="left"> <a href="./main.html" class="btn btn-dark">Home</a></align>
+      </div>
+    </nav>
+   
+
+
+    <div id="content" style="padding-top: 70px">
+      <p>
+        <div style="padding-left: 30px;padding-right: 30px;padding-top: 30px;padding-bottom: 30px;">
+            <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded"> 
+                    <div class="card mb-3"  >
+                <div class="card-body" >
+                  <h2>Contiguous memory allocation in Operating Systems</h2><hr/>
+<h2>What is Contiguous memory allocation?</h2> <hr>
+<p>Processes need execution time/storage space in memory blocks. OS has various algorithms to allocate in-coming processes to available memory blocks.
+</p>
+
+<h2>What are the types of contiguous memory allocation?</h2> 
+<p>The following are the most used algorithms:
+<ul>
+  <li>First Fit</li>
+  <li>Best Fit</li>
+  <li>Worst Fit</li>
+</ul>
+  </p>
+<hr>
+
+<h2>First Fit</h2> <hr>
+<p>In the first fit approach is to allocate the first free partition or hole large enough which
+  can accommodate the process. It finishes after finding the first suitable free partition.
+  </p>
+<ul>
+  <li>
+    Advantage: Fastest algorithm because it searches as little as possible.
+  </li>
+  <li>
+    Disadvantage: The remaining unused memory areas left after allocation become waste if it is too small. Thus requests for larger memory requirements cannot be accomplished.
+  </li>
+</ul>
+<hr>
+
+<h2>Best Fit</h2> <hr>
+<p>The best fit deals with allocating the smallest free partition which meets the requirement
+  of the requesting process. This algorithm first searches the entire list of free partitions and considers the smallest hole that is adequate. It then tries to find a hole which is close to actual process size needed.
+  </p>
+<ul>
+  <li>
+    Advantage: Memory utilization is much better than first fit as it searches the smallest free partition first available.
+  </li>
+  <li>
+    Disadvantage: It is slower and may even tend to fill up memory with tiny useless holes.
+  </li>
+</ul>
+<hr>
+
+<h2>Worst Fit</h2> <hr>
+<p>The worst fit approach is to locate the largest available free portion so that the portion left will be big enough to be useful. It is the reverse of best fit.
+</p>
+<ul>
+  <li>
+    Advantage: Reduces the rate of production of small gaps.
+
+  </li>
+  <li>
+    Disadvantage: If a process requiring larger memory arrives at a later stage then it cannot be accommodated as the largest hole is already split and occupied.
+  </li>
+</ul>
+<hr>
+
+
+    </div></div></div></div></p></div>
+
+    <div style="padding-left: 30px;padding-right: 30px;padding-bottom: 30px;">
+      <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded"> 
+        <div class="card mb-3"  >
+          <div class="card-body" >
+            <h5>Problem Statement 1: First Fit </h5>
+            <p>You are tasked with developing a memory allocation program using the First Fit algorithm. Given a set of memory blocks and processes with varying sizes, implement a solution that allocates memory blocks to processes in the order they arrive. Your program should output the process number, its size, and the block number it is allocated to, or indicate if it cannot be allocated.</p>
+            <div class="buttons" >
+              <center>
+                <a href="https://www.programiz.com/c-programming/online-compiler/" class="btn btn-dark">Code Yourself</a>
+                <!-- <a href="./ContiguousCode.html#firstfit" class="btn btn-dark">Solution</a> -->
+                <a href="./ContiguousQuiz.html" class="btn btn-dark">Solution</a>
+              </center>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding-left: 30px;padding-right: 30px;padding-bottom: 30px;">
+      <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded"> 
+        <div class="card mb-3"  >
+          <div class="card-body" >
+            <h5>Problem Statement 2: Best Fit </h5>
+            <p>Create a memory allocation program employing the Best Fit algorithm. With a collection of available memory blocks and processes waiting to be allocated, design a solution that assigns each process to the smallest available block that can accommodate it. The output should display the process number, its size, and the block number it is allocated to, or indicate if it cannot be allocated.
+            </p>
+            <div class="buttons" >
+              <center>
+                <a href="https://www.programiz.com/c-programming/online-compiler/" class="btn btn-dark">Code Yourself</a>
+                <!-- <a href="./ContiguousCode.html#bestfit" class="btn btn-dark">Solution</a> -->
+                <a href="./ContiguousQuiz.html" class="btn btn-dark">Solution</a>
+              </center>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding-left: 30px;padding-right: 30px;padding-bottom: 30px;">
+      <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded"> 
+        <div class="card mb-3"  >
+          <div class="card-body" >
+            <h5>Problem Statement 3: Worst Fit </h5>
+            <p>Develop a program for memory allocation using the Worst Fit algorithm. Given a set of memory blocks and a queue of processes with different sizes, implement a solution that assigns each process to the largest available block. The output should include the process number, its size, and the block number it is allocated to, or indicate if it cannot be allocated.
+            </p>
+            <div class="buttons" >
+              <center>
+                <a href="https://www.programiz.com/c-programming/online-compiler/" class="btn btn-dark">Code Yourself</a>
+                <!-- <a href="./ContiguousCode.html#worstfit" class="btn btn-dark">Solution</a> -->
+                <a href="./ContiguousQuiz.html" class="btn btn-dark">Solution</a>
+              </center>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="padding-left: 30px;padding-right: 30px;padding-bottom: 30px;">
+      <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded"> 
+              <div class="card mb-3"  >
+          <div class="card-body" >
+            <h4>Practice :  </h4>
+            <p>Get deeper insights of the concept by preparing for the most asked questions of this topic in exams and interviews.
+            </p>
+            
+            <div class="container mt-3">
+              <div id="accordion">
+                <!-- <div class="card">
+                  <div class="card-header">
+                    <a class="btn" data-bs-toggle="collapse" href="#collapseOne">
+                      Collapsible Group Item #1
+                    </a>
+                  </div>
+                  <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
+                    <div class="card-body">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                  </div>
+                </div> -->
+                <div class="card">
+                  <div class="card-header">
+                    <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseTwo">
+                    CIE/SEE Questions
+                  </a>
+                  </div>
+                  <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
+                    <div class="card-body">
+                        <ol type = "i">
+                        <li>Given five memory partitions of 100 KB,500 KB,200 KB,300 KB and 600 KB in order, how would first fit, best fit and worst fit algorithms place processes of 212 KB,417 KB,112 KB and 426 KB in order? Which algorithm makes the most efficient use of memory?</li>
+                        <li>Describe memory mapping and protection, memory allocation, and fragmentation issues in contiguous memory allocation.  </li>
+                        <li>Consider six memory partitions of size 200 KB,400 KB,600 KB,500 KB,300 KB and 250 KB . These partitions need to be allocated to four processes of sizes 357 KB, 210 KB,468 KB and 491 KB in that order. Identify the block allocation by best fit, first fit and worst fit strategy. Determine the internal and external fragmentation. </li>
+                        <li>How does external fragmentation occur in contiguous memory allocation, and what are its effects?</li>
+                        <li>Can you explain how compaction is used to mitigate external fragmentation in contiguous memory allocation?</li>
+                        </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header">
+                    <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseThree">
+                      Interview Questions
+                    </a>
+                  </div>
+                  <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
+                    <div class="card-body">
+                     <ol type = "i">
+                     <li>How does external fragmentation occur in contiguous memory allocation, and what are its effects?</li>
+                     <li>Can you explain how compaction is used to mitigate external fragmentation in contiguous memory allocation?</li>
+                     <li>What is the goal and functionality of memory management?</li>
+                     <li>What is segmented memory management?</li>
+                     <li>What is single contiguous allocation?</li>
+
+
+                     </ol>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div></div></div></div>
+    <div style="padding-bottom: 30px;">
+    <center>
+      <div class="card" style="width: 18rem;">
+        
+        <div class="card-body">
+          <h5 class="card-title">We value your feedback</h5>
+          <p class="card-text">
+            
+      <div class="like-dislike">
+        <button class="like-btn" onclick="toggleLike(this)">
+          <i class="fas fa-thumbs-up"></i>
+        </button>
+        <button class="dislike-btn" onclick="toggleDislike(this)">
+          <i class="fas fa-thumbs-down"></i>
+        </button>
+      </div>
+  <br>
+      <div class="rating" data-rating="0">
+        <span class="star" data-value="1">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="5">&#9733;</span>
+      </div>
+      
+          </p>
+  
+        </div>
+      </div></center></div>
+  
+      <script>
+        function toggleLike(button) {
+          button.classList.toggle("active");
+          // Remove active class from dislike button if it's active
+          document.querySelector(".dislike-btn").classList.remove("active");
+        }
+  
+        function toggleDislike(button) {
+          button.classList.toggle("active");
+          // Remove active class from like button if it's active
+          document.querySelector(".like-btn").classList.remove("active");
+        }
+  
+        document.addEventListener("DOMContentLoaded", function() {
+    const stars = document.querySelectorAll('.star');
+  
+    stars.forEach(function(star) {
+      star.addEventListener('click', function() {
+        const value = parseInt(star.getAttribute('data-value'));
+  
+        // Update rating attribute and add active class to stars up to the clicked one
+        star.parentNode.setAttribute('data-rating', value);
+        stars.forEach(function(innerStar) {
+          if (parseInt(innerStar.getAttribute('data-value')) <= value) {
+            innerStar.classList.add('active');
+          } else {
+            innerStar.classList.remove('active');
+          }
+        });
+      });
+    });
+  });
+  
+      </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+      integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

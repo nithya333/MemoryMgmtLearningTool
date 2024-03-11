@@ -1,0 +1,40 @@
+/* Import Font Awesome CSS if you're using their icons */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css");
+
+/* Styling for like and dislike buttons */
+/* Styling for like and dislike buttons */
+.like-dislike {
+  display: inline-block;
+}
+
+.like-btn,
+.dislike-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-right: 10px;
+}
+
+.like-btn i,
+.dislike-btn i {
+  font-size: 24px;
+}
+
+.like-btn.active i,
+.dislike-btn.active i {
+  color: rgb(165, 31, 105); /* Change color for active state */
+}
+
+.rating {
+  font-size: 24px;
+}
+
+.star {
+  cursor: pointer;
+}
+
+.star:hover,
+.star.active {
+  color: rgb(165, 31, 105); /* Change star color on hover and when active */
+}

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Address Translation</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  />
+  <link href="style.css" rel="stylesheet" />
+  </head>
+  <body style="background-color: rgb(165, 31, 105)">
+
+    <nav class="navbar fixed-top bg-body-tertiary" style="text-align: center">
+        <div class="container-fluid">
+          <h1><center>Address Translation</center></h1>
+          <align ="left"> <a href="./main.html" class="btn btn-dark">Home</a></align>
+        </div>
+      </nav>
+    <div style="padding-left: 30px;padding-right: 30px;padding-top: 100px;padding-bottom: 30px;">
+    <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded"> 
+            <div class="card mb-3"  >
+        <div class="card-body" >
+          <h4 >Hurray!!! You passed the quiz. Let's see the solution </h4>
+          <img src = "./popper.gif" height = "200px"><hr/>
+          <h5 class="card-title">Problem Statement : </h5><hr/>
+          <p>Logical to physical address translation by computing page number and offset:
+        </p>
+        <p>Assume that a system has a 16-bit virtual address with a 4-KB page size and a process of 10 pages. Write a C program that allocates the 10 pages of the process to the frames of the free_frames list given. Also, when a virtual address (in decimal) is passed, it should translate  logical/virtual address to physical address for a simple paging scheme.
+        </p><br>
+        <p>As an example, your program would run as follows:<br>
+            For an input of 23851<br/>
+            Your program would output:<br/><br/> 
+            Logical address : Page number = 5 	 Offset = 3371<br>
+                Physical address : Frame number = 12 	 Offset = 3371<br/>
+            Virtual address 23851 maps to physical address 52523
+            </p>
+            <h5>Solution :</h5><hr>
+          <p class="card-text"><pre>
+            <code class="language-css">
+                    #include  < stdio.h >
+                    #include  < stdlib.h >
+                    #include  < sys/mman.h >
+                    
+                    #define PAGE_SIZE 4096
+                    #define PAGE_TABLE_SIZE 10  // Number of pages
+                    #define NUM_FRAMES 20
+                    int free_frames[NUM_FRAMES] = {14, 13, 18, 2, 15, 9, 6, 11, 4, 1, 7, 3, 16, 5, 12, 8, 10, 17, 0, 19};
+                    int frame_use = NUM_FRAMES - 1;
+                    
+                    typedef struct 
+                    {
+                        int valid_bit;
+                        int frame_number;
+                    } PageTableEntry;
+                    PageTableEntry page_table[PAGE_TABLE_SIZE];
+                    
+                    void allocate_pages_in_frames()
+                    {
+                        // Simulate initializing page table by having random order of free frames
+                        for (int i = 0; i < PAGE_TABLE_SIZE; ++i) 
+                        {
+                            page_table[i].valid_bit = 1;
+                            page_table[i].frame_number = free_frames[frame_use--];
+                        }
+                    }
+                    
+                    void print_page_table()
+                    {
+                        printf("%10s \t| %10s\n", "Page no", "Frame no");
+                        for (int i = 0; i < PAGE_TABLE_SIZE; ++i) 
+                        {
+                            if (page_table[i].valid_bit == 1)
+                            printf("%10d \t| %10d\n", i, page_table[i].frame_number);
+                        }
+                    }
+                    
+                    void virtual_memory_access(int virtual_address) 
+                    {
+                        // Extract page number and offset from the virtual address
+                        int page_number = virtual_address / PAGE_SIZE;
+                        int offset = virtual_address % PAGE_SIZE;
+                        printf("\tLogical address : Page number = %d \t Offset = %d\n", page_number, offset);
+                     
+                        // Check if the page is valid in the page table
+                        if (page_number < PAGE_TABLE_SIZE && page_table[page_number].valid_bit) 
+                        {
+                            // Access the data at the corresponding physical address
+                            int physical_address = page_table[page_number].frame_number * PAGE_SIZE + offset;
+                            printf("\tPhysical address : Frame number = %d \t Offset = %d\n",page_table[page_number].frame_number, offset);
+                            printf("\tVirtual address %d maps to physical address %d\n", virtual_address, physical_address);
+                        } 
+                        else
+                        {
+                            printf("Page fault for virtual address %d. Handle accordingly.\n", virtual_address);
+                        }
+                    }
+                    
+                    int main() 
+                    {
+                        allocate_pages_in_frames();
+                        print_page_table();
+                    
+                        // Get input of the virtual address, -1 to quit
+                        int virt_add = 0;
+                        do
+                        {
+                            printf("Enter the virtual address\n");
+                            scanf("%d", &virt_add);
+                            virtual_memory_access(virt_add);
+                        }while(virt_add != -1);
+                    }
+                    
+                    
+            </code>
+        </pre></p>
+        <h5>Sample Output :</h5><hr/>
+        <img src = "./output_AT_PT.png"/>
+        <img src = "./output_AT.png"/>
+        </div>
+      </div></div>
+    </div>
+    <div style="padding-bottom: 30px;">
+    <center>
+      <div class="card" style="width: 18rem;">
+        
+        <div class="card-body">
+          <h5 class="card-title">We value your feedback</h5>
+          <p class="card-text">
+            
+      <div class="like-dislike">
+        <button class="like-btn" onclick="toggleLike(this)">
+          <i class="fas fa-thumbs-up"></i>
+        </button>
+        <button class="dislike-btn" onclick="toggleDislike(this)">
+          <i class="fas fa-thumbs-down"></i>
+        </button>
+      </div>
+  <br>
+      <div class="rating" data-rating="0">
+        <span class="star" data-value="1">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="5">&#9733;</span>
+      </div>
+      
+          </p>
+  
+        </div>
+      </div></center></div>
+  
+      <script>
+        function toggleLike(button) {
+          button.classList.toggle("active");
+          // Remove active class from dislike button if it's active
+          document.querySelector(".dislike-btn").classList.remove("active");
+        }
+  
+        function toggleDislike(button) {
+          button.classList.toggle("active");
+          // Remove active class from like button if it's active
+          document.querySelector(".like-btn").classList.remove("active");
+        }
+  
+        document.addEventListener("DOMContentLoaded", function() {
+    const stars = document.querySelectorAll('.star');
+  
+    stars.forEach(function(star) {
+      star.addEventListener('click', function() {
+        const value = parseInt(star.getAttribute('data-value'));
+  
+        // Update rating attribute and add active class to stars up to the clicked one
+        star.parentNode.setAttribute('data-rating', value);
+        stars.forEach(function(innerStar) {
+          if (parseInt(innerStar.getAttribute('data-value')) <= value) {
+            innerStar.classList.add('active');
+          } else {
+            innerStar.classList.remove('active');
+          }
+        });
+      });
+    });
+  });
+  
+      </script>
+    <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+    crossorigin="anonymous"
+  ></script>
+  </body>
+</html>
